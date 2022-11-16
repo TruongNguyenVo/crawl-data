@@ -4,16 +4,40 @@ from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
 
 # Khai báo browser
-browser = webdriver.Chrome(executable_path= 'C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe')
+# browser = webdriver.Chrome(executable_path= 'C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe')
 
-#mở chrome profile 3- Profile Cần Thơ
-options = webdriver.ChromeOptions()
-options.add_argument(r'--user-data-dir=D:\\a tool\\profile_tds\\User Data')
-options.add_argument('profile-directory=Profile 3')
-options.add_argument('--mute-audio')
-driver = webdriver.Chrome(executable_path=r'C:\\Program Files\\Google\Chrome\\Application\\chromedriver.exe', options=options)
+# #mở chrome profile 3- Profile Cần Thơ
+# options = webdriver.ChromeOptions()
+# options.add_argument(r'--user-data-dir=D:\\a tool\\profile_tds\\User Data')
+# options.add_argument('profile-directory=Profile 3')
+# options.add_argument('--mute-audio')
+# driver = webdriver.Chrome(executable_path=r'C:\\Program Files\\Google\Chrome\\Application\\chromedriver.exe', options=options)
 
 
+from selenium import webdriver # thêm thư viện webdriver
+from selenium.webdriver.common.keys import Keys #thêm thư viện keys cho máy
+
+tk ="vohoangduy0596@gmail.com"
+mk ="08nguyen16396742"
+
+# mở chrome lên
+driver = webdriver.Chrome(executable_path="C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe")
+
+
+#mở trang web
+driver.get("https://www.facebook.com")
+
+#điền tài khoản
+
+user = driver.find_element_by_id("email") #tìm kiểu của tài khoản(sau chữ id)
+user.send_keys(tk)#điền tài khoản
+
+#điền mật khẩu
+password = driver.find_element_by_id("pass") #tìm kiểu của mật khẩu(sau chữ id)
+password.send_keys(mk) #điền mật khẩu
+#nhấn enter
+password.send_keys(Keys.ENTER)
+time.sleep(5)
 # mở trang facebook cần crawl
 
 link_crawl = 'https://www.facebook.com/groups/ReviewAnUongCanTho/posts/1122612675107751/'
@@ -64,13 +88,18 @@ while dong != '':
 
 #ghi vào tệp
 for i in link_list:
-
-	link = i.get_attribute('href')
-	name = name_list[temp].text
-	text = str(name)+","+str(link)+'\n'
-	tep.write(text)
-	print("name facebook: " +str(name)+","+"link facebook: "+str(link)+'\n')
-	temp = temp +1
+	try:
+		link = i.get_attribute('href')
+		name = name_list[temp].text
+		text = str(name)+","+str(link)+'\n'
+		tep.write(text)
+		print("name facebook: " +str(name)+","+"link facebook: "+str(link)+'\n')
+		temp = temp +1
+	except IndexError:
+		pass
+	except:
+		print('Lỗi rồi')
+		exit()
 
 
 # #cấu trúc tags "//tên_thẻ[@tên_loại_thẻ = 'tên thuộc tính đó']" ==> 
