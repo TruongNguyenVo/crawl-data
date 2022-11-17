@@ -3,46 +3,53 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
 
-# Khai báo browser
-# browser = webdriver.Chrome(executable_path= 'C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe')
+#Khai báo browser
+browser = webdriver.Chrome(executable_path= 'C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe')
 
-# #mở chrome profile 3- Profile Cần Thơ
-# options = webdriver.ChromeOptions()
-# options.add_argument(r'--user-data-dir=D:\\a tool\\profile_tds\\User Data')
-# options.add_argument('profile-directory=Profile 3')
-# options.add_argument('--mute-audio')
-# driver = webdriver.Chrome(executable_path=r'C:\\Program Files\\Google\Chrome\\Application\\chromedriver.exe', options=options)
-
-
-from selenium import webdriver # thêm thư viện webdriver
-from selenium.webdriver.common.keys import Keys #thêm thư viện keys cho máy
-
-tk ="vohoangduy0596@gmail.com"
-mk ="08nguyen16396742"
-
-# mở chrome lên
-driver = webdriver.Chrome(executable_path="C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe")
+#mở chrome profile 3- Profile Cần Thơ
+options = webdriver.ChromeOptions()
+options.add_argument(r'--user-data-dir=D:\\a tool\\profile_tds\\User Data')
+options.add_argument('profile-directory=Profile 3')
+options.add_argument('--mute-audio')
+driver = webdriver.Chrome(executable_path=r'C:\\Program Files\\Google\Chrome\\Application\\chromedriver.exe', options=options)
 
 
-#mở trang web
-driver.get("https://www.facebook.com")
+# from selenium import webdriver # thêm thư viện webdriver
+# from selenium.webdriver.common.keys import Keys #thêm thư viện keys cho máy
 
-#điền tài khoản
+# tk ="vohoangduy0596@gmail.com"
+# mk ="08nguyen16396742"
 
-user = driver.find_element_by_id("email") #tìm kiểu của tài khoản(sau chữ id)
-user.send_keys(tk)#điền tài khoản
+# # mở chrome lên
+# driver = webdriver.Chrome(executable_path="C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe")
 
-#điền mật khẩu
-password = driver.find_element_by_id("pass") #tìm kiểu của mật khẩu(sau chữ id)
-password.send_keys(mk) #điền mật khẩu
-#nhấn enter
-password.send_keys(Keys.ENTER)
-time.sleep(5)
+
+# #mở trang web
+# driver.get("https://www.facebook.com")
+
+# #điền tài khoản
+
+# user = driver.find_element_by_id("email") #tìm kiểu của tài khoản(sau chữ id)
+# user.send_keys(tk)#điền tài khoản
+# time.sleep(5)
+# #điền mật khẩu
+# password = driver.find_element_by_id("pass") #tìm kiểu của mật khẩu(sau chữ id)
+# password.send_keys(mk) #điền mật khẩu
+# time.sleep(5)
+# #nhấn enter
+# password.send_keys(Keys.ENTER)
+# time.sleep(5)
+
 # mở trang facebook cần crawl
-
-link_crawl = 'https://www.facebook.com/groups/ReviewAnUongCanTho/posts/1122612675107751/'
+time.sleep(10)
+link_crawl = 'https://www.facebook.com/groups/ReviewAnUongCanTho/posts/1123202028382149/'
 dr = driver.get(link_crawl)
-time.sleep(5)
+time.sleep(10)
+
+#cuộn xuống một đoạn để thấy bình luận liên quan nhất
+driver.execute_script("window.scrollTo(0,1220)")
+time.sleep(3)
+
 
 #========vào mục bình luận=========
 #bấm vào mục phù hợp nhất hay bình luận liên quan nhất
@@ -59,9 +66,18 @@ time.sleep(3)
 end = True
 while end == True:
 	try:
-		driver.find_element_by_xpath('/html/body/div[1]/div[1]/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[8]/div/div[5]/div/div/div[2]/div[4]/div/div[2]/span/span').click()
-		time.sleep(5)
-		end = True 
+		#bấm vào mục xem thêm n bình luận nữa
+		try:
+			driver.find_element_by_xpath('/html/body/div[1]/div[1]/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[8]/div/div[5]/div/div/div[2]/div[4]/div/div[2]/span/span').click()
+			driver.execute_script("window.scrollTo(0,1000)")
+			time.sleep(5)
+			end = True
+		#bấm vào mục xem các bình luận trước
+		except:
+			driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div[3]/div/div/div[4]/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div[8]/div/div[4]/div/div/div[2]/div[2]/div[1]/div[2]/span/span').click()
+			driver.execute_script("window.scrollTo(0,1000)")			
+			time.sleep(5)
+			end = True
 	except:
 		print('Đã tải hết bình luận')
 		end = False
