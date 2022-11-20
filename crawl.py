@@ -2,6 +2,7 @@ import json, sys, os, time,re,colorama,requests,time,random
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
 
 #Khai báo browser
 browser = webdriver.Chrome(executable_path= 'C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe')
@@ -12,7 +13,8 @@ options.add_argument(r'--user-data-dir=D:\\a tool\\profile_tds\\User Data')
 options.add_argument('profile-directory=Profile 3')
 options.add_argument('--mute-audio')
 driver = webdriver.Chrome(executable_path=r'C:\\Program Files\\Google\Chrome\\Application\\chromedriver.exe', options=options)
-
+# driver.maximize_window()
+driver.set_window_size(800,1000)
 
 # from selenium import webdriver # thêm thư viện webdriver
 # from selenium.webdriver.common.keys import Keys #thêm thư viện keys cho máy
@@ -22,7 +24,7 @@ driver = webdriver.Chrome(executable_path=r'C:\\Program Files\\Google\Chrome\\Ap
 
 # # mở chrome lên
 # driver = webdriver.Chrome(executable_path="C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe")
-
+# driver.maximize_window()
 
 # #mở trang web
 # driver.get("https://www.facebook.com")
@@ -42,22 +44,32 @@ driver = webdriver.Chrome(executable_path=r'C:\\Program Files\\Google\Chrome\\Ap
 
 # mở trang facebook cần crawl
 time.sleep(10)
-link_crawl = 'https://www.facebook.com/groups/ReviewAnUongCanTho/posts/1123202028382149/'
+link_crawl = 'https://www.facebook.com/groups/ReviewAnUongCanTho/posts/1124886561547029/'
 dr = driver.get(link_crawl)
-time.sleep(10)
+time.sleep(5)
 
 #cuộn xuống một đoạn để thấy bình luận liên quan nhất
-driver.execute_script("window.scrollTo(0,1220)")
-time.sleep(3)
-
-
+driver.execute_script("window.scrollTo(0,2600)")
+time.sleep(4)
+# driver.execute_script("window.scrollTo(0,1500)")
+# time.sleep(10)
+# time.sleep(10)
+# time.sleep(100)
 #========vào mục bình luận=========
 #bấm vào mục phù hợp nhất hay bình luận liên quan nhất
+# binh_luan = driver.find_element(By.NAME, 'Bình luận liên quan nhất')
+# binh_luan.click()
+
 try:
-	driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div[4]/div[1]/div/div/div/div/div/div/div/div/div/div[1]/div/div[8]/div/div[4]/div/div/div[2]/div[2]/div/div/div/span').click()
-except:
+
 	driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div[3]/div/div/div[4]/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div[8]/div/div[4]/div/div/div[2]/div[2]/div/div/div/span').click()
+								 # '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div[3]/div/div/div[4]/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div[8]/div/div[4]/div/div/div[2]/div[2]/div[2]/div/div/span'
+								 # '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div[3]/div/div/div[4]/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div[8]/div/div[4]/div/div/div[2]/div[2]/div/div/div/span'
+except:
+		driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div[4]/div[1]/div/div/div/div/div/div/div/div/div/div[1]/div/div[8]/div/div[4]/div/div/div[2]/div[2]/div/div/div/span').click()
+	
 time.sleep(3)
+# time.sleep(100)
 #bấm vào mục tất cả bình luận
 driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[2]/div/div/div[1]/div[1]/div/div/div/div/div/div/div[1]/div/div[3]/div[1]/div/div[1]/span').click()
 time.sleep(3)
@@ -69,13 +81,13 @@ while end == True:
 		#bấm vào mục xem thêm n bình luận nữa
 		try:
 			driver.find_element_by_xpath('/html/body/div[1]/div[1]/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[8]/div/div[5]/div/div/div[2]/div[4]/div/div[2]/span/span').click()
-			driver.execute_script("window.scrollTo(0,1000)")
+			driver.execute_script("window.scrollTo(0,1500)")
 			time.sleep(5)
 			end = True
 		#bấm vào mục xem các bình luận trước
 		except:
 			driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div[3]/div/div/div[4]/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div[8]/div/div[4]/div/div/div[2]/div[2]/div[1]/div[2]/span/span').click()
-			driver.execute_script("window.scrollTo(0,1000)")			
+			driver.execute_script("window.scrollTo(0,1500)")			
 			time.sleep(5)
 			end = True
 	except:
@@ -95,7 +107,7 @@ link_list =driver.find_elements_by_xpath(tags_link)
 tags_name = '//span[@class = "x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x4zkp8e x676frb x1nxh6w3 x1sibtaa x1s688f xzsf02u"]'
 name_list = driver.find_elements_by_xpath(tags_name)
 temp = 0
-tep = open('link_thu_excel.csv',"a+",encoding='utf')
+tep = open('data_cantho.csv',"a+",encoding='utf')
 
 #đọc hết tep link_thu
 dong = tep.readline().strip()
