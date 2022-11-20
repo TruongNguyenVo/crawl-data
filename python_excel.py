@@ -1,0 +1,10 @@
+tep = open('link_thu_excel.csv',encoding='utf')
+tepmoi = open('link_thu_excel_moi.csv','w',encoding='utf')
+tieude = tep.readline().strip()
+tepmoi.write(tieude)
+dong = tep.readline().strip()
+while dong != '':
+	ldong = dong.split(',')
+	tepmoi.write(dong+ '\n')
+	dong = tep.readline().strip()
+tepmoi.write(ten_nguoi + ',' + link)

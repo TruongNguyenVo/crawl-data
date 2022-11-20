@@ -4,52 +4,52 @@ from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 
-#Khai báo browser
-browser = webdriver.Chrome(executable_path= 'C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe')
+# #Khai báo browser
+# browser = webdriver.Chrome(executable_path= 'C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe')
 
-#mở chrome profile 3- Profile Cần Thơ
-options = webdriver.ChromeOptions()
-options.add_argument(r'--user-data-dir=D:\\a tool\\profile_tds\\User Data')
-options.add_argument('profile-directory=Profile 3')
-options.add_argument('--mute-audio')
-driver = webdriver.Chrome(executable_path=r'C:\\Program Files\\Google\Chrome\\Application\\chromedriver.exe', options=options)
-# driver.maximize_window()
-driver.set_window_size(800,1000)
+# #mở chrome profile 3- Profile Cần Thơ
+# options = webdriver.ChromeOptions()
+# options.add_argument(r'--user-data-dir=D:\\a tool\\profile_tds\\User Data')
+# options.add_argument('profile-directory=Profile 3')
+# options.add_argument('--mute-audio')
+# driver = webdriver.Chrome(executable_path=r'C:\\Program Files\\Google\Chrome\\Application\\chromedriver.exe', options=options)
+# # driver.maximize_window() #khong set full man hinh
+# driver.set_window_size(700,1000)
 
-# from selenium import webdriver # thêm thư viện webdriver
-# from selenium.webdriver.common.keys import Keys #thêm thư viện keys cho máy
+from selenium import webdriver # thêm thư viện webdriver
+from selenium.webdriver.common.keys import Keys #thêm thư viện keys cho máy
 
-# tk ="vohoangduy0596@gmail.com"
-# mk ="08nguyen16396742"
+tk ="vohoangduy0596@gmail.com"
+mk ="08nguyen16396742"
 
-# # mở chrome lên
-# driver = webdriver.Chrome(executable_path="C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe")
-# driver.maximize_window()
+# mở chrome lên
+driver = webdriver.Chrome(executable_path="C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe")
+driver.set_window_size(700,1000)
 
-# #mở trang web
-# driver.get("https://www.facebook.com")
+#mở trang web
+driver.get("https://www.facebook.com")
 
-# #điền tài khoản
+#điền tài khoản
 
-# user = driver.find_element_by_id("email") #tìm kiểu của tài khoản(sau chữ id)
-# user.send_keys(tk)#điền tài khoản
-# time.sleep(5)
-# #điền mật khẩu
-# password = driver.find_element_by_id("pass") #tìm kiểu của mật khẩu(sau chữ id)
-# password.send_keys(mk) #điền mật khẩu
-# time.sleep(5)
-# #nhấn enter
-# password.send_keys(Keys.ENTER)
-# time.sleep(5)
+user = driver.find_element_by_id("email") #tìm kiểu của tài khoản(sau chữ id)
+user.send_keys(tk)#điền tài khoản
+time.sleep(5)
+#điền mật khẩu
+password = driver.find_element_by_id("pass") #tìm kiểu của mật khẩu(sau chữ id)
+password.send_keys(mk) #điền mật khẩu
+time.sleep(5)
+#nhấn enter
+password.send_keys(Keys.ENTER)
+time.sleep(5)
 
 # mở trang facebook cần crawl
 time.sleep(10)
-link_crawl = 'https://www.facebook.com/groups/ReviewAnUongCanTho/posts/1124886561547029/'
+link_crawl = 'https://www.facebook.com/groups/ReviewAnUongCanTho/posts/1124168688285483/'
 dr = driver.get(link_crawl)
 time.sleep(5)
 
-#cuộn xuống một đoạn để thấy bình luận liên quan nhất
-driver.execute_script("window.scrollTo(0,2600)")
+#cuộn xuống một đoạn để thấy bình luận liên quan nhất-cuộn đến chỗ đó mới nhận được
+driver.execute_script("window.scrollTo(0,1150)")
 time.sleep(4)
 # driver.execute_script("window.scrollTo(0,1500)")
 # time.sleep(10)
@@ -118,10 +118,18 @@ while dong != '':
 for i in link_list:
 	try:
 		link = i.get_attribute('href')
-		name = name_list[temp].text
-		text = str(name)+","+str(link)+'\n'
+		name = name_list[temp-1].text
+		string = str(link)
+		vitri_batdau = string.find('1000')
+
+		vitri_ketthuc = string.find('?')-1
+
+		
+		link1 = string[int(vitri_batdau):int(vitri_ketthuc)]
+
+		text = str(name)+","+str(link1)+'\n'
 		tep.write(text)
-		print("name facebook: " +str(name)+","+"link facebook: "+str(link)+'\n')
+		print("name facebook: " +str(name)+","+"link facebook: "+str(link1)+'\n')
 		temp = temp +1
 	except IndexError:
 		pass
