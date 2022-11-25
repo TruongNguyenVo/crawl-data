@@ -4,6 +4,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys #thêm thư viện keys cho máy
+from datetime import datetime # thêm thư viện datetime để lấy thời gian thực
 def rundelay(k):
   while (k>0):
     print('                                        ', end='\r')
@@ -22,17 +23,17 @@ def rundelay(k):
 # browser = webdriver.Chrome(executable_path= 'C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe')
 
 # #mở chrome profile 3- Profile Cần Thơ
-# options = webdriver.ChromeOptions()
+options = webdriver.ChromeOptions()
 # options.add_argument(r'--user-data-dir=D:\\a tool\\profile_tds\\User Data')
 # options.add_argument('profile-directory=Profile 3')
 # options.add_argument('--mute-audio')
 # driver = webdriver.Chrome(executable_path=r'C:\\Program Files\\Google\Chrome\\Application\\chromedriver.exe', options=options)
 # # driver.maximize_window() #khong set full man hinh
 # driver.set_window_size(700,1000)
-
+# options.headless = True # chạy ngầm
 
 # mở chrome lên
-driver = webdriver.Chrome(executable_path="C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe")
+driver = webdriver.Chrome(options=options,executable_path=r"C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe")
 driver.set_window_size(700,1000)
 driver.maximize_window()
 
@@ -79,14 +80,14 @@ rundelay(10)
 # rundelay(2)
 
 link_price_toptodown = str(driver.current_url)
-page = '0' #crawling page 1
-driver.get(link_price_toptodown + '&order=asc&page='+page+'&sortBy=price')
+page = 1 #crawling page 1
+driver.get(link_price_toptodown + '&order=asc&page='+str(page)+'&sortBy=price')
 #cuộn 4 lần mỗi lần 2650
 driver.execute_script("window.scrollTo(0,2650)")
 rundelay(3)
-# for i in range(0,4):
-# 	driver.execute_script("window.scrollTo(0, window.scrollY + 1000)")
-# 	rundelay(3)
+for i in range(0,5):
+	driver.execute_script("window.scrollTo(0, window.scrollY + 1200)")
+	rundelay(3)
 
 
 
@@ -107,6 +108,15 @@ price_items_list = driver.find_elements(By.XPATH, price_items)
 sold_item = '//div[@class = "r6HknA uEPGHT"]' #các sản phẩm đã bán
 sold_item_list = driver.find_elements(By.XPATH, sold_item)
 
+#mở tệp
+tep = open('D:\\a tool\\DATACT\\data_shoppe.csv',"w+",encoding='utf')
+tieude = "Name,Price,Sold,Date_Crawl,Link_Item"+'\n'
+tep.write(tieude)
+#đọc hết tệp
+dong = tep.readline().strip()
+while dong != '':
+	dong = tep.readline().strip()
+
 temp1 = 0
 for i in link_item_list:
 	if temp1 == 0:
@@ -124,14 +134,27 @@ for i in link_item_list:
 			print('link'+ str(temp1)+':\t' + str(link))
 
 			print('===========================================')
-			print('link'+ str(temp1)+':\t' + str(name))
+			print('tên'+ str(temp1)+':\t' + str(name))
 
 			print('===========================================')
-			print('link'+ str(temp1)+':\t' + str(price))
+			print('giá'+ str(temp1)+':\t' + str(price))
 
 			print('===========================================')
-			print('link'+ str(temp1)+':\t' + str(sold))
-			temp1 = temp1 +1
+			print('đã bán'+ str(temp1)+':\t' + str(sold))
+
+			print('===========================================')
+			# #in ra ngày tháng năm, giờ phút giây
+			# date = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
+			#in ra ngày tháng năm
+			date = datetime.today().strftime('%Y-%m-%d')
+			print('ngày lấy dữ liêu: '+':\t' + date)
+
+			#xử lý dữ liệu trước khi ghi vào tệp
+			text = str(name)+","+str(price)+","+str(sold)+","+str(date)+","+str(link)+'\n'
+
+			#ghi dữ liệu vào tệp
+			tep.write(text)
+			temp1 = temp1+1
 		except IndexError:
 			pass
 		except:
@@ -140,6 +163,9 @@ for i in link_item_list:
 
 
 
+
+
+driver.quit()
 
 
 # time.sleep(10000)
