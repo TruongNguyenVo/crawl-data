@@ -4,47 +4,57 @@ from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 
-#Khai báo browser
-browser = webdriver.Chrome(executable_path= 'C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe')
+#https://www.facebook.com/groups/ReviewAnUongCanTho/posts/1133272720708413/
+link_crawl = 'https://www.facebook.com/groups/ReviewAnUongCanTho/posts/1133272720708413/'
 
-#mở chrome profile 3- Profile Cần Thơ
-options = webdriver.ChromeOptions()
-options.add_argument(r'--user-data-dir=D:\\a tool\\profile_tds\\User Data')
-options.add_argument('profile-directory=Profile 3')
-options.add_argument('--mute-audio')
-driver = webdriver.Chrome(executable_path=r'C:\\Program Files\\Google\Chrome\\Application\\chromedriver.exe', options=options)
-# driver.maximize_window() #khong set full man hinh
+
+
+
+# #Khai báo browser
+# browser = webdriver.Chrome(executable_path= 'C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe')
+
+# # #mở chrome profile 3- Profile Cần Thơ
+# options = webdriver.ChromeOptions()
+# options.add_argument(r'--user-data-dir=D:\\a tool\\profile_tds\\User Data')
+# options.add_argument('profile-directory=Profile 3')
+# options.add_argument('--mute-audio')
+# driver = webdriver.Chrome(executable_path=r'C:\\Program Files\\Google\Chrome\\Application\\chromedriver.exe', options=options)
+# # driver.maximize_window() #khong set full man hinh
+# ###options.headless = True # chạy ngầm
+
+
+
+## You must click allow or not allow in selenium driver if you dont use profile chrome
+from selenium import webdriver # thêm thư viện webdriver
+from selenium.webdriver.common.keys import Keys #thêm thư viện keys cho máy
+
+tk ="vohoangduy0596@gmail.com"
+mk ="08nguyen16396742"
+
+# mở chrome lên
+driver = webdriver.Chrome(executable_path=r"C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe")
 driver.set_window_size(700,1000)
 
-# from selenium import webdriver # thêm thư viện webdriver
-# from selenium.webdriver.common.keys import Keys #thêm thư viện keys cho máy
+#mở trang web
+driver.get("https://www.facebook.com")
 
-# tk ="vohoangduy0596@gmail.com"
-# mk ="08nguyen16396742"
+#điền tài khoản
 
-# # mở chrome lên
-# driver = webdriver.Chrome(executable_path="C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe")
-# driver.set_window_size(700,1000)
-
-# #mở trang web
-# driver.get("https://www.facebook.com")
-
-# #điền tài khoản
-
-# user = driver.find_element_by_id("email") #tìm kiểu của tài khoản(sau chữ id)
-# user.send_keys(tk)#điền tài khoản
-# time.sleep(5)
-# #điền mật khẩu
-# password = driver.find_element_by_id("pass") #tìm kiểu của mật khẩu(sau chữ id)
-# password.send_keys(mk) #điền mật khẩu
-# time.sleep(5)
-# #nhấn enter
-# password.send_keys(Keys.ENTER)
-# time.sleep(5)
+user = driver.find_element_by_id("email") #tìm kiểu của tài khoản(sau chữ id)
+user.send_keys(tk)#điền tài khoản
+time.sleep(5)
+#điền mật khẩu
+password = driver.find_element_by_id("pass") #tìm kiểu của mật khẩu(sau chữ id)
+password.send_keys(mk) #điền mật khẩu
+time.sleep(5)
+#nhấn enter
+password.send_keys(Keys.ENTER)
+time.sleep(5)
 
 # mở trang facebook cần crawl
 time.sleep(10)
-link_crawl = 'https://www.facebook.com/groups/ReviewAnUongCanTho/posts/1124886561547029/'
+
+driver.set_window_size(700,1000)
 dr = driver.get(link_crawl)
 time.sleep(5)
 
@@ -60,18 +70,20 @@ time.sleep(4)
 # binh_luan = driver.find_element(By.NAME, 'Bình luận liên quan nhất')
 # binh_luan.click()
 
+
+### You must click allow or not allow in selenium driver if you dont use profile chrome
 try:
 
-	driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div[3]/div/div/div[4]/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div[8]/div/div[4]/div/div/div[2]/div[2]/div/div/div/span').click()
+	driver.find_element(By.XPATH,'/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div[3]/div/div/div[4]/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div[8]/div/div[4]/div/div/div[2]/div[2]/div/div/div/span').click()
 								 # '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div[3]/div/div/div[4]/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div[8]/div/div[4]/div/div/div[2]/div[2]/div[2]/div/div/span'
 								 # '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div[3]/div/div/div[4]/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div[8]/div/div[4]/div/div/div[2]/div[2]/div/div/div/span'
 except:
-		driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div[4]/div[1]/div/div/div/div/div/div/div/div/div/div[1]/div/div[8]/div/div[4]/div/div/div[2]/div[2]/div/div/div/span').click()
+	driver.find_element(By.XPATH,'/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div[4]/div[1]/div/div/div/div/div/div/div/div/div/div[1]/div/div[8]/div/div[4]/div/div/div[2]/div[2]/div/div/div/span').click()
 	
 time.sleep(3)
 # time.sleep(100)
 #bấm vào mục tất cả bình luận
-driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[2]/div/div/div[1]/div[1]/div/div/div/div/div/div/div[1]/div/div[3]/div[1]/div/div[1]/span').click()
+driver.find_element(By.XPATH,'/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[2]/div/div/div[1]/div[1]/div/div/div/div/div/div/div[1]/div/div[3]/div[1]/div/div[1]/span').click()
 time.sleep(3)
 
 #bấm vào mục xem thêm n bình luận nữa
@@ -80,13 +92,13 @@ while end == True:
 	try:
 		#bấm vào mục xem thêm n bình luận nữa
 		try:
-			driver.find_element_by_xpath('/html/body/div[1]/div[1]/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[8]/div/div[5]/div/div/div[2]/div[4]/div/div[2]/span/span').click()
+			driver.find_element(By.XPATH,'/html/body/div[1]/div[1]/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div/div/div/div/div/div[8]/div/div[5]/div/div/div[2]/div[4]/div/div[2]/span/span').click()
 			driver.execute_script("window.scrollTo(0,1500)")
 			time.sleep(5)
 			end = True
 		#bấm vào mục xem các bình luận trước
 		except:
-			driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div[3]/div/div/div[4]/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div[8]/div/div[4]/div/div/div[2]/div[2]/div[1]/div[2]/span/span').click()
+			driver.find_element(By.XPATH,'/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div[3]/div/div/div[4]/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div[8]/div/div[4]/div/div/div[2]/div[2]/div[1]/div[2]/span/span').click()
 			driver.execute_script("window.scrollTo(0,1500)")			
 			time.sleep(5)
 			end = True
@@ -99,15 +111,19 @@ while end == True:
 
 #in tất cả các link người comment
 tags_link = '//a[@aria-hidden = "false"]'
-link_list =driver.find_elements_by_xpath(tags_link)
+link_list =driver.find_elements(By.XPATH,tags_link)
 
 
 
 #in tất cả các tên 
 tags_name = '//span[@class = "x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x4zkp8e x676frb x1nxh6w3 x1sibtaa x1s688f xzsf02u"]'
-name_list = driver.find_elements_by_xpath(tags_name)
+#							  x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x4zkp8e x676frb x1nxh6w3 x1sibtaa x1s688f xzsf02u
+name_list = driver.find_elements(By.XPATH,tags_name)
 temp = 0
-tep = open('data_cantho.csv',"a+",encoding='utf')
+#chỉ ghi vào mới và xóa cái cũ
+tep = open('D:\\a tool\\DATACT\\data_cantho.csv',"w+",encoding='utf')
+tieude = "Name,Link"+'\n'
+tep.write(tieude)
 
 #đọc hết tep link_thu
 dong = tep.readline().strip()
@@ -124,13 +140,13 @@ for i in link_list:
 		try:
 			link = i.get_attribute('href')
 			name = name_list[temp-1].text
-			# string = str(link)
-			# vitri_batdau = string.find('1000')
+			string = str(link)
+			vitri_batdau = string.find('1000')
 
-			# vitri_ketthuc = string.find('?')-1
+			vitri_ketthuc = string.find('?')-1
 
 			
-			# link1 = string[int(vitri_batdau):int(vitri_ketthuc)]
+			link1 = string[int(vitri_batdau):int(vitri_ketthuc)]
 
 			text = str(name)+","+str(link)+'\n'
 			tep.write(text)
@@ -178,7 +194,10 @@ for i in link_list:
 
 
 print('Done')
+driver.quit()
 time.sleep(10)
+print('======Starting Run ADD FRIEND======')
+os.system("python add_friend.py")
 
 
 
