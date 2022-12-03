@@ -13,12 +13,6 @@ def rundelay(k):
     k=k-1
     print(' \033[1;31m=> \033[1;32m Đang Đợi Delay Khoảng:   '  +str(k), end='\r')
 
-
-# link_crawl = input('nhap link can crawl: ')
-
-
-
-
 # #Khai báo browser
 # browser = webdriver.Chrome(executable_path= 'C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe')
 
@@ -72,128 +66,129 @@ while(True):
 
 		pass
 rundelay(10)
-#nhấn vào mục giá
-# driver.find_element(By.CLASS_NAME, "shopee-svg-icon icon-arrow-down-small").click()
-# rundelay(2)
-# #nhấn vào mục giá từ thấp đến cao
-# driver.find_element(By.CLASS_NAME,"select-with-status__dropdown-item select-with-status__dropdown-item--with-tick").click()
-# rundelay(2)
+def main(num):
+	#crawl 3 trang đầu tiên của shoppe
 
-#crawl 3 trang đầu tiên của shoppe
-
-link_price_toptodown = str(driver.current_url)
-page = 1 #crawling page 1
-driver.get(link_price_toptodown + '&order=asc&page='+str(page)+'&sortBy=price')
-#cuộn 4 lần mỗi lần 2650
-driver.execute_script("window.scrollTo(0,2650)")
-rundelay(3)
-for i in range(0,5):
-	driver.execute_script("window.scrollTo(0, window.scrollY + 1200)")
+	link_price_toptodown = str(driver.current_url)
+	page = num #crawling page 1
+	driver.get(link_price_toptodown + '&order=asc&page='+str(page)+'&sortBy=price')
+	#cuộn 4 lần mỗi lần 2650
+	driver.execute_script("window.scrollTo(0,2650)")
 	rundelay(3)
+	for i in range(0,5):
+		driver.execute_script("window.scrollTo(0, window.scrollY + 1200)")
+		rundelay(3)
 
-rundelay(5)
-# #tìm tất cả link sản phẩm
-# link = '//a[@data-sqe = "link"]'
-# link_item_list =driver.find_elements(By.XPATH, link)
+	rundelay(5)
 
-# #tìm tất cả các tên các sản phẩm
-# name_items = '//div[@class = "ie3A+n bM+7UW Cve6sh"]'
-# name_item_list = driver.find_elements(By.XPATH, name_items)
+	#mở tệp
+	if num == 0:
+		tep_ghi = open('D:\\a tool\\DATACT\\data_shoppe.csv',"a+",encoding='utf')
+		tieude = "Name,Price,Sold,Date_Crawl,Link_Item"+'\n'
+		tep_ghi.write(tieude)
+	else:
+		tep_ghi = open('D:\\a tool\\DATACT\\data_shoppe.csv',"a+",encoding='utf')
+	#đọc hết tệp
+	dong = tep_ghi.readline().strip()
+	while dong != '':
+		dong = tep_ghi.readline().strip()
 
-# #tìm tất cả các max_giá các sản phẩm
-# price_items = '//span[@class = "ZEgDH9"]'
-# price_items_list = driver.find_elements(By.XPATH, price_items)
+	#tìm tất cả các div gồm tên, giá, và xuất xứ
+	link = '//div[@class = "KMyn8J"]'
+	link_item_list =driver.find_elements(By.XPATH, link)
 
-# #tìm tất cả các mục đã bán bao nhiêu sản phẩm
-# sold_item = '//div[@class = "r6HknA uEPGHT"]' #các sản phẩm đã bán
-# sold_item_list = driver.find_elements(By.XPATH, sold_item)
-
-#mở tệp
-tep = open('D:\\a tool\\DATACT\\data_shoppe.csv',"w+",encoding='utf')
-tieude = "Name,Price,Sold,Date_Crawl,Link_Item"+'\n'
-tep.write(tieude)
-#đọc hết tệp
-dong = tep.readline().strip()
-while dong != '':
-	dong = tep.readline().strip()
-
-# temp1 = 0
-# for i in link_item_list:
-# 	if temp1 == 0:
-# 		temp1 = temp1 +1
-# 		pass
-# 	else:
-# 		try:
-# 			link = i.get_attribute('href')
-# 			name = name_item_list[temp1].text
-# 			price = price_items_list[temp1].text
-# 			sold = sold_item_list[temp1].text
-# 			print('===========================================')
-# 			print('link'+ str(temp1)+':\t' + str(link))
-
-# 			print('tên'+ str(temp1)+':\t' + str(name))
-
-# 			print('giá'+ str(temp1)+':\t' + str(price))
-
-# 			print('đã bán'+ str(temp1)+':\t' + str(sold))
-
-# 			print('===========================================')
-# 				# #in ra ngày tháng năm, giờ phút giây
-# 				# date = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
-# 				#in ra ngày tháng năm
-# 			date = datetime.today().strftime('%Y-%m-%d')
-# 			print('ngày lấy dữ liêu: '+':\t' + date)
-
-# 				#xử lý dữ liệu trước khi ghi vào tệp
-# 			text = str(name)+","+str(price)+","+str(sold)+","+str(date)+","+str(link)+'\n'
-
-# 				#ghi dữ liệu vào tệp
-# 				# tep.write(text)
-# 			temp1 = temp1+1
-# 		except IndexError:
-# 			pass
-# 		except:
-# 			print('Lỗi rồi')
-# 			exit()
+	#tìm tất cả các link dẫn đến sản phẩm
+	link = '//a[@data-sqe = "link"]'
+	link_item_list =driver.find_elements(By.XPATH, link)
 
 
-link = '//div[@class = "KMyn8J"]'
-link_item_list =driver.find_elements(By.XPATH, link)
+	temp = 0
+	for comment in link_item_list:
+		sold_item = 0
 
-link = '//a[@data-sqe = "link"]'
-link_item_list =driver.find_elements(By.XPATH, link)
-temp = 0
-for comment in link_item_list:
-	#name
-    
+		lists = str(comment.text)
+		#thay dấu ',' bằng dấu '.' để có thể ghi vào file csv
+		txt = lists.replace(',', ".")
+		#thay dấu xuống dòng bằng dấu ',' để phân tách các phần tử trong data
+		txt_1 = txt.replace('\n', ",")
 
- #    link = '//a[@data-sqe = "link"]'
-	# link_item_list =driver.find_elements(By.XPATH, link)
+		#tách các phần tử ra để ghi vào file csv
+		y = txt_1.split(',')
+		# print(y)
+	####################################################################
+	# DATA Mẫu:
 
+	# ['Yêu thích', '50%', 'GIẢM', 'Áo polo Nam vải cá sấu Cotton xuất xịn. Áo polo chuẩn form. sang trọng. lịch lãm. form rộng..', '#ShopXuHuong', '₫90.000', '₫45.000', 'Đã bán 1.8k', 'Hà Nội']
+	# tinh xuat xu:  Hà Nội
+	# da ban:  1.8k
+	# gia la: ₫45.000
+	# ten san pham la:  Áo polo Nam vải cá sấu Cotton xuất xịn. Áo polo chuẩn form. sang trọng. lịch lãm. form rộng..
 
-    # class_1 = comment.find_element(By.XPATH,'//div[@class = "dpiR4u"]')
-
-    #lấy hết text trong class vào thay dấu xuống dòng bằng dấu ,
-	lists = str(comment.text)
-	x = lists.replace('\n', ",")
-	print(x) # x = 
-#Tài Trợ,áo polo thun nam cổ bẻ phối màu cao cấp cotton, chất liệu vải cá xấu, chuẩn from,Hoàn 20% xu,Mua Kèm Deal Sốc,₫200.000,TP. Hồ Chí Minh
-
-#https://shopee.vn/%C3%A1o-polo-thun-nam-c%E1%BB%95-b%E1%BA%BB-ph%E1%BB%91i-m%C3%A0u-cao-c%E1%BA%A5p-cotton-ch%E1%BA%A5t-li%E1%BB%87u-v%E1%BA%A3i-c%C3%A1-x%E1%BA%A5u-chu%E1%BA%A9n-from-i.175237589.19763007764?sp_atk=d996fce1-3d75-43b6-ba2a-ee4ab2a2b9d4&xptdk=d996fce1-3d75-43b6-ba2a-ee4ab2a2b9d4	
-
-	#lấy link sản phẩm
-	link = link_item_list[temp].get_attribute('href')
-	print(link)
-	#xử lý dữ liệu trước khi ghi vào tệp
-	text = str(name)+","+str(price)+","+str(sold)+","+str(date)+","+str(link)+'\n'
-
-	temp = temp +1
-
-driver.quit()
+	# ['30%', 'GIẢM', 'Tài Trợ', 'Áo polo nam CALUCI cộc tay. phom slimfit ôm vừa vặn họa tiết in lá cây nhiệt đới đậm chất thiên nhiên MCPS1018S', '10% Giảm', 'Mua 2 & giảm 3%', '₫420.000', '₫294.000', 'Hà Nội']
+	# tinh xuat xu:  Hà Nội
+	# gia la: ₫294.000
+	####################################################################
+		#tinh xuat xu san pham
+		print('tinh xuat xu: ',y[-1])
+		tinh_xuat_xu = y[-1]
 
 
-# time.sleep(10000)
+		#mục đã bán và giá sản phẩm
+		y_string = str(y)
+		#tìm đến mục đã bán bằng cách tìm đến mục có chữ 'Đã bán'
+		vi_tri_dau = y_string.find('Đã bán')
+		if vi_tri_dau != -1:
+		# -1 if the value is not found.
+			da_ban = y[-2]
+			sold_0 = da_ban.replace('k', "00")
+			sold_1 = sold_0.replace('.','')
+			sold = re.findall(r'\d+',sold_1)
 
+			sold_2 = str(sold)
+			remove_character_1 = sold_2.replace("['","")
+			remove_character_2 = remove_character_1.replace("']","")
 
-# VTjd7p whIxGK
-# VTjd7p whIxGK
+			sold_item = int(remove_character_2)
+
+			#nếu có mục đã bán thì giá sau mục đã bán
+			print('đã bán',str(sold_item))
+
+			#xóa kí tự ₫
+			remove_char_in_price = y[-3].replace("₫","")
+			price_items = remove_char_in_price
+			print('gia la:',price_items)
+
+		else:
+			#ngược lại, nếu mục không có mục đã bán thì giá nằm sau mục đã bán
+			remove_char_in_price = y[-2].replace("₫","")
+			price_items = remove_char_in_price
+			print('gia la:',price_items)
+
+		#tìm tên sản phẩm bằng các tìm phần tử có độ dài lớn nhất trong chuỗi
+		max_lenght = 0
+		name = ''
+		for i in y:
+			if len(i) > max_lenght:
+				max_lenght = len(i)
+				name = i 
+
+		print('ten san pham la: ',name)
+		name_items = name
+
+		#lấy link sản phẩm
+		link_items = link_item_list[temp].get_attribute('href')
+		print(link_items)
+		temp = temp +1
+		
+		#lấy ngày crawl dữ liệu về
+		today = datetime.today()
+		date_crawl_item = today.strftime("%d/%m/%Y")
+		#xử lý dữ liệu trước khi ghi vào tệp
+		text = str(name_items)+","+str(price_items)+","+str(sold_item)+","+str(date_crawl_item)+","+str(link_items)+'\n'
+		tep_ghi.write(text)		
+		# print(text)
+		# exit()
+if __name__ == '__main__':
+	for i in range(0,2):
+		main(i)
+	driver.quit()

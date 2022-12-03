@@ -28,3 +28,97 @@ Yêu thích,41%,GIẢM,Áo thun nam Có Cổ - Áo Thun Nam POLO thiết kế v�
 ==========================
 44%,GIẢM,Áo polo nam thể thao thêu B PL13 chất cotton cá sấu co giãn 4c hàng có bigsize 35-90kg TN Officical,₫62.000,₫34.720,Đã bán 5,Hải Dương
 ==========================
+
+
+
+['30%', 'GIẢM', 'Tài Trợ', 'Áo polo nam CALUCI cộc tay. phom slimfit ôm vừa vặn họa tiết in lá cây nhiệt đới đậm chất thiên nhiên MCPS1018S', '10% Giảm', 'Mua 2 & giảm 3%', '₫420.000', '₫294.000', 'Hà Nội']
+tinh xuat xu:  Hà Nội
+gia la: ₫294.000
+ten san pham la:  Áo polo nam CALUCI cộc tay. phom slimfit ôm vừa vặn họa tiết in lá cây nhiệt đới đậm chất thiên nhiên MCPS1018S
+=====================
+['42%', 'GIẢM', 'Tài Trợ', 'Áo polo nam PATTERN cotton 5 màu trơn PA015', '#Shopdacbiet', '₫398.000', '₫229.000', 'Đã bán 889', 'Hà Nội']
+tinh xuat xu:  Hà Nội
+da ban:  Đã bán 889
+gia la: ₫229.000
+ten san pham la:  Áo polo nam PATTERN cotton 5 màu trơn PA015
+=====================
+['50%', 'GIẢM', 'Tài Trợ', 'Áo polo nam basic Ajeka PL01. chất vải thun lạnh co giãn 4 chiều. mặc cực mát. cực êm', '6% Giảm', 'Mua 2 & giảm ₫10.000', '₫169.000', '₫85.000', 'Đã bán 12', 'TP. Hồ Chí Minh']
+tinh xuat xu:  TP. Hồ Chí Minh
+da ban:  Đã bán 12
+gia la: ₫85.000
+ten san pham la:  Áo polo nam basic Ajeka PL01. chất vải thun lạnh co giãn 4 chiều. mặc cực mát. cực êm
+=====================
+['Yêu thích', 'Tài Trợ', "Áo thun đồng phục quán cafe nhà hàng. khách sạn chất liệu cá sấu thái La'house", '₫130.000', 'Đã bán 230', 'TP. Hồ Chí Minh']
+tinh xuat xu:  TP. Hồ Chí Minh
+da ban:  Đã bán 230
+gia la: ₫130.000
+ten san pham la:  Áo thun đồng phục quán cafe nhà hàng. khách sạn chất liệu cá sấu thái La'house
+=====================
+['Tài Trợ', 'Áo polo nam phối màu đen trắng cao cấp mã S8251 áo polo nam phong cách hàn quốc', '10% Giảm', '₫350.000', 'Đã bán 52', 'Hà Nội']
+tinh xuat xu:  Hà Nội
+da ban:  Đã bán 52
+gia la: ₫350.000
+ten san pham la:  Áo polo nam phối màu đen trắng cao cấp mã S8251 áo polo nam phong cách hàn quốc
+=====================
+['44%', 'GIẢM', 'Áo Polo Nam cổ bẻ CM PL14 thun basic cộc tay vải cá sấu cotton phong cách trẻ trung chuẩn form nhiều màu', '₫58.000', '₫32.480', 'Đã bán 12', 'Hải Dương']
+tinh xuat xu:  Hải Dương
+da ban:  Đã bán 12
+gia la: ₫32.480
+ten san pham la:  Áo Polo Nam cổ bẻ CM PL14 thun basic cộc tay vải cá sấu cotton phong cách trẻ trung chuẩn form nhiều màu
+=====================
+['44%', 'GIẢM', 'Áo polo nam CM cổ bẻ phối viền chất thun cotton co giãn- AP45', '₫58.000', '₫32.480', 'Đã bán 23', 'Hải Dương']
+tinh xuat xu:  Hải Dương
+da ban:  Đã bán 23
+gia la: ₫32.480
+ten san pham la:  Áo polo nam CM cổ bẻ phối viền chất thun cotton co giãn- AP45
+=====================
+['44%', 'GIẢM', '♕\x08Áo polo nam thể thao cổ rêu PL02 chất cotton cá sấu co giãn 4c hàng có bigsize 35-90kg', '₫59.000', '₫33.040', 'Đã bán 30', 'Hải Dương']
+tinh xuat xu:  Hải Dương
+da ban:  Đã bán 30
+gia la: ₫33.040
+ten san pham la:  ♕Áo polo nam thể thao cổ rêu PL02 chất cotton cá sấu co giãn 4c hàng có bigsize 35-90kg
+=====================
+['47%', 'GIẢM', 'Áo polo nam 3D cao cấp phong cách sang trọng - AC028', '₫63.000', '₫33.390', 'Đã bán 39', 'Hải Dương']
+tinh xuat xu:  Hải Dương
+da ban:  Đã bán 39
+gia la: ₫33.390
+ten san pham la:  Áo polo nam 3D cao cấp phong cách sang trọng - AC028
+=====================
+['44%', 'GIẢM', 'Áo polo kẻ caro chất liệu cotton cá sấu cao cấp phong cách thể thao trẻ trung năng động có bigsize', '₫60.000', '₫33.600', 'Đã bán 32', 'Hải Dương']
+tinh xuat xu:  Hải Dương
+da ban:  Đã bán 32
+gia la: ₫33.600
+ten san pham la:  Áo polo kẻ caro chất liệu cotton cá sấu cao cấp phong cách thể thao trẻ trung năng động có bigsize
+=====================
+['44%', 'GIẢM', 'áo polo nam loang cổ viền. áo DSquared² chất thun co giãn 4 chiều KOIP AP49', '₫61.000', '₫34.160', 'Đã bán 8', 'Hải Dương']
+tinh xuat xu:  Hải Dương
+da ban:  Đã bán 8
+gia la: ₫34.160
+ten san pham la:  áo polo nam loang cổ viền. áo DSquared² chất thun co giãn 4 chiều KOIP AP49
+=====================
+['44%', 'GIẢM', '\x08Áo polo nam thể thao thêu B PL13 chất cotton cá sấu co giãn 4c hàng có bigsize 35-90kg TN Officical', '₫62.000', '₫34.720', 'Đã bán 5', 'Hải Dương']
+tinh xuat xu:  Hải Dương
+da ban:  Đã bán 5
+gia la: ₫34.720
+ten san pham la:  Áo polo nam thể thao thêu B PL13 chất cotton cá sấu co giãn 4c hàng có bigsize 35-90kg TN Officical
+=====================
+['50%', 'GIẢM', 'Áo phông polo nam. áo thun nam trơn có cổ chất vải Cotton Cá Sấu dày dặn lên dáng cực chuẩn', '#Shopdacbiet', 'Mua giá bán buôn/ bán sỉ', '₫80.000', '₫40.000', 'Đã bán 62', 'Hà Nội']
+tinh xuat xu:  Hà Nội
+da ban:  Đã bán 62
+gia la: ₫40.000
+ten san pham la:  Áo phông polo nam. áo thun nam trơn có cổ chất vải Cotton Cá Sấu dày dặn lên dáng cực chuẩn
+=====================
+['Yêu thích', '41%', 'GIẢM', 'Áo POLO mặt cười FREESIZE from thụng tay lỡ dáng UNISEX phù hợp cho cả nam và nữ', '#Shopdacbiet', '₫76.000', '₫45.000', 'Đã bán 26', 'Nam Định']
+tinh xuat xu:  Nam Định
+da ban:  Đã bán 26
+gia la: ₫45.000
+ten san pham la:  Áo POLO mặt cười FREESIZE from thụng tay lỡ dáng UNISEX phù hợp cho cả nam và nữ
+=====================
+['Yêu thích', '50%', 'GIẢM', 'Áo polo Nam vải cá sấu Cotton xuất xịn. Áo polo chuẩn form. sang trọng. lịch lãm. form rộng..', '#ShopXuHuong', '₫90.000', '₫45.000', 'Đã bán 1.8k', 'Hà Nội']
+tinh xuat xu:  Hà Nội
+da ban:  Đã bán 1.8k
+gia la: ₫45.000
+ten san pham la:  Áo polo Nam vải cá sấu Cotton xuất xịn. Áo polo chuẩn form. sang trọng. lịch lãm. form rộng..
+=====================
+done
+[Finished in 38.2s]

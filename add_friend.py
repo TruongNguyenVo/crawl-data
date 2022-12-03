@@ -3,6 +3,7 @@ import json, sys, os, time,re,colorama,requests,time,random
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
 s = requests.Session()
 options = webdriver.ChromeOptions()
 options.add_argument(r'--user-data-dir=D:\\a tool\\profile_tds\\User Data')
@@ -83,7 +84,9 @@ for link in link_list:
 			#nếu nút kết bạn nằm ở ô 1 thì sài lệnh này
 #			driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div[1]/div[1]/div[2]/div/div/div/div[4]/div/div/div[1]/div/div/div/div[1]/div[2]/span/span').click()
 			#nếu nút kết bạn nằm ở ô 2 thì sài lệnh này
+			
 			driver.find_element(By.XPATH,'/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div[1]/div[1]/div[2]/div/div/div/div[4]/div/div/div[2]/div/div/div/div[1]/div[2]/span/span').click()
+										   
 			tep_ghigoikb.write(str(link) + ',')
 			print('đã qua dòng ghi')
 			print('Requests: ',link)
@@ -99,11 +102,18 @@ for link in link_list:
 				rundelay(3)
 				driver.execute_script("window.scrollTo(0, window.scrollY + "+str(rd_scroll)+")")
 				rundelay(10)
-		except:
-			tep_ghigoikb.write(str(link) + ',')
-			print('đã qua dòng ghi')
-			print('Error: ',link)
-			time.sleep(3)
+		except Exception as e:
+			print(e)
+			driver.quit()
+			exit()
+
+    	# ... PRINT THE ERROR MESSAGE ... 
+		# except:
+		# 	tep_ghigoikb.write(str(link) + ',')
+		# 	print('đã qua dòng ghi')
+		# 	print('Error: ',link)
+		# 	time.sleep(3)
+		# 	exit()
 
 
 	
