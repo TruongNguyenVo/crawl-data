@@ -51,6 +51,7 @@ time.sleep(10)
 ##########################################################
 #nhập món cần crawl vào mục tìm kiếm
 items_crawl = 'áo polo nam'
+#https://shopee.vn/search?keyword=%C3%A1o%20polo%20nam
 driver.find_element(By.XPATH, "/html/body/div[1]/div/header/div[2]/div/div[1]/div[1]/div/form/input").send_keys(items_crawl)
 rundelay(3)
 
@@ -84,7 +85,7 @@ def main(num):
 	#mở tệp
 	if num == 0:
 		tep_ghi = open('D:\\a tool\\DATACT\\data_shoppe.csv',"a+",encoding='utf')
-		tieude = "Name,Price,Sold,Date_Crawl,Link_Item"+'\n'
+		tieude = "Name_Search,Name,Price,Sold,Date_Crawl,Province_Of_Origin,Link_Item"+'\n'
 		tep_ghi.write(tieude)
 	else:
 		tep_ghi = open('D:\\a tool\\DATACT\\data_shoppe.csv',"a+",encoding='utf')
@@ -131,6 +132,7 @@ def main(num):
 		#tinh xuat xu san pham
 		print('tinh xuat xu: ',y[-1])
 		tinh_xuat_xu = y[-1]
+		Province_of_origin_item = tinh_xuat_xu
 
 
 		#mục đã bán và giá sản phẩm
@@ -184,11 +186,12 @@ def main(num):
 		today = datetime.today()
 		date_crawl_item = today.strftime("%d/%m/%Y")
 		#xử lý dữ liệu trước khi ghi vào tệp
-		text = str(name_items)+","+str(price_items)+","+str(sold_item)+","+str(date_crawl_item)+","+str(link_items)+'\n'
+		text = str(items_crawl)+","+str(name_items)+","+str(price_items)+","+str(sold_item)+","+str(date_crawl_item)+","+str(Province_of_origin_item)+","+str(link_items)+'\n'
+		print(text)
 		tep_ghi.write(text)		
 		# print(text)
 		# exit()
 if __name__ == '__main__':
-	for i in range(0,2):
+	for i in range(0,6):
 		main(i)
 	driver.quit()
